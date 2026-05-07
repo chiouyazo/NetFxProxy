@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <RootNamespace>NetFxProxy.Runtime</RootNamespace>
+
+    <PackageId>NetFxProxy.Runtime</PackageId>
+    <Description>Runtime bridge for calling .NET Framework 4.8 assemblies from .NET 10. Hosts the
+      .NET 4.8 CLR in-process via a C++/CLI native DLL and provides handle-based type marshaling.</Description>
+    <Authors>chiouyazo</Authors>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/chiouyazo/NetFxProxy</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/chiouyazo/NetFxProxy</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <!-- Bundle the pre-compiled C++/CLI native DLL for win-x64 -->
+  <ItemGroup>
+    <None
+      Include="..\NetFxProxy.Native\NetFxProxy.dll"
+      Pack="true"
+      PackagePath="runtimes\win-x64\native"
+      Link="runtimes\win-x64\native\NetFxProxy.dll"
+      CopyToOutputDirectory="PreserveNewest"
+    />
+  </ItemGroup>
+</Project>
